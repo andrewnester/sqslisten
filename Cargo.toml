@@ -1,7 +1,19 @@
 [package]
 name = "sqslisten"
 version = "0.1.0"
-authors = ["ec2-user"]
+authors = ["Andrew Nester <andrew.nester.dev@gmail.com>"]
+repository = "https://github.com/andrewnester/sqslisten"
+homepage = "https://github.com/andrewnester/sqslisten"
+license = "MIT"
+readme = "README.md"
+description = """
+SQSListen, a simple listener for AWS SQS queue.
+It allows you to set listener to your AWS SQS queue which will ask for the available messages in the queue and 
+call the passed handler when the message received. 
+Once message received and processed (does not matter if handler returns error or not) the message is removed from the queue.
+"""
+categories = ["development-tools"]
+keywords = ["sqs", "aws", "queue", "listener", "sqs listener", "consumer", "sqs consumer"]
 edition = "2018"
 
 [dependencies]
