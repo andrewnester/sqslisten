@@ -13,7 +13,7 @@ call the passed handler when the message received.
 Once message received and processed (does not matter if handler returns error or not) the message is removed from the queue.
 """
 categories = ["development-tools"]
-keywords = ["sqs", "aws", "queue", "listener", "sqs listener", "consumer", "sqs consumer"]
+keywords = ["sqs", "aws", "queue", "listener", "sqs-listener", "consumer", "sqs-consumer"]
 edition = "2018"
 
 [dependencies]
