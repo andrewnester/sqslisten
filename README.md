@@ -1,5 +1,7 @@
 # SQSListen, a simple listener for AWS SQS queue.
 
+[![Build Status](https://travis-ci.org/andrewnester/sqslisten.svg?branch=master)](https://travis-ci.org/andrewnester/sqslisten)
+
 It allows you to set listener to your AWS SQS queue which will ask for the available messages in the queue and call the passed handler when the message received.
 Once message received and processed (does not matter if handler returns error or not) the message is removed from the queue.
 
