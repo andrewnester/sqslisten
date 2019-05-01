@@ -1,0 +1,11 @@
+[package]
+name = "sqslisten"
+version = "0.1.0"
+authors = ["ec2-user"]
+edition = "2018"
+
+[dependencies]
+rusoto_core = "0.38.0"
+rusoto_sqs = "0.38.0"
+clokwerk = "0.1.0"
+chrono = "0.4"
