@@ -7,7 +7,7 @@
 //! ```rust
 //! use sqslisten::{ReceiveMessageRequest, Region, SQSListen};
 //! use std::{thread, time};
-//! 
+//!
 //! fn main() {
 //!     let mut sqs_listener = SQSListen::new(Region::UsEast1);
 //!     let handle = sqs_listener.listen(
@@ -20,19 +20,19 @@
 //!                 Some(message) => println!("Message received: {:?}", message),
 //!                 None => {}
 //!             }
-//! 
+//!
 //!             match err {
 //!                 Some(error) => println!("Error received: {:?}", error),
 //!                 None => {}
 //!             }
-//! 
+//!
 //!             return Ok(());
 //!         },
 //!     );
 
 //!     let ten_seconds = time::Duration::from_millis(100000);
 //!     thread::sleep(ten_seconds);
-//! 
+//!
 //!     handle.stop();
 //! }
 //! ```
@@ -65,10 +65,10 @@ trait SQSListenHandler {
 
 impl SQSListen {
     pub fn new(region: Region) -> SQSListen {
-        return SQSListen {
+        SQSListen {
             sqs_client: SqsClient::new(region),
             queue_url: "".to_string(),
-        };
+        }
     }
 
     pub fn new_with<P, D>(
@@ -82,10 +82,10 @@ impl SQSListen {
         D: DispatchSignedRequest + Send + Sync + 'static,
         D::Future: Send,
     {
-        return SQSListen {
+        SQSListen {
             sqs_client: SqsClient::new_with(request_dispatcher, credentials_provider, region),
             queue_url: "".to_string(),
-        };
+        }
     }
 
     pub fn listen<F>(&mut self, input: ReceiveMessageRequest, handler: F) -> ScheduleHandle
@@ -118,8 +118,7 @@ impl SQSListen {
                 }
             }
         });
-        let handle = scheduler.watch_thread(Duration::from_millis(100));
-        return handle;
+        scheduler.watch_thread(Duration::from_millis(100))
     }
 
     fn process_response<F>(&self, response: &ReceiveMessageResult, handler: &F)
@@ -153,7 +152,6 @@ impl SQSListen {
             .delete_message(DeleteMessageRequest {
                 queue_url: self.queue_url.clone(),
                 receipt_handle: message.receipt_handle.clone().unwrap(),
-                ..DeleteMessageRequest::default()
             })
             .sync();
     }
